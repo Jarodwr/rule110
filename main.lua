@@ -1,7 +1,7 @@
 rules = love.graphics.newShader [[
     uniform vec2 normalized;
-    const vec4 ON    = vec4(1.0, 1.0, 1.0, 1.0);
-    const vec4 OFF     = vec4(0.0, 0.0, 0.0, 1.0);
+    const vec4 ON  = vec4(1.0, 1.0, 1.0, 1.0);
+    const vec4 OFF = vec4(0.0, 0.0, 0.0, 1.0);
 
     vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords) {
         bool left = Texel(texture, texture_coords + vec2( -1.0,  0.0) * normalized) == ON;
@@ -18,10 +18,9 @@ rules = love.graphics.newShader [[
         }
         //If the pixel is not part of the tape, copy from position in the row below
         return Texel(texture, texture_coords + vec2(0.0, 1.0) * normalized);
-
     }
 ]]
-board = love.graphics.newCanvas(500, 500)
+board = love.graphics.newCanvas(1000, 1000)
 rules:send("normalized", {1 / board:getWidth(), 1 / board:getHeight()})
 
 function love.draw()
